@@ -123,3 +123,27 @@ wallSitInput.addEventListener("input", function () {
     }
 
 });
+
+const completeButton = document.querySelector("#complete-button");
+
+completeButton.addEventListener("click", function () {
+
+    const squat = Number(squatInput.value);
+    const lunge = Number(lungeInput.value);
+    const bridge = Number(bridgeInput.value);
+    const calf = Number(calfInput.value);
+    const wallSit = Number(wallSitInput.value);
+
+    if (
+        squat >= 20 &&
+        lunge >= 10 &&
+        bridge >= 20 &&
+        calf >= 25 &&
+        wallSit >= 30
+    ) {
+        alert("🎉 今天的運動完成了！");
+    } else {
+        alert("還有運動尚未完成！");
+    }
+
+});
