@@ -141,9 +141,30 @@ completeButton.addEventListener("click", function () {
         calf >= 25 &&
         wallSit >= 30
     ) {
+
+        const today = new Date().toISOString().split("T")[0];
+
+        const todayRecord = {
+            date: today,
+            completed: true,
+            squat: squat,
+            lunge: lunge,
+            bridge: bridge,
+            calf: calf,
+            wallSit: wallSit
+        };
+
+        localStorage.setItem(
+            "exercise-" + today,
+            JSON.stringify(todayRecord)
+        );
+
         alert("🎉 今天的運動完成了！");
+
     } else {
+
         alert("還有運動尚未完成！");
+
     }
 
 });
