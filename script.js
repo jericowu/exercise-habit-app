@@ -58,3 +58,58 @@ squatInput.addEventListener("input", function () {
     }
 
 });
+
+const lungeInput = document.querySelector("#lunge");
+const lungeStatus = document.querySelector("#lunge-status");
+
+lungeInput.addEventListener("input", function () {
+    const actual = Number(lungeInput.value);
+
+    if (actual >= 10) {
+        lungeStatus.textContent = "✓ 已完成";
+    } else {
+        lungeStatus.textContent = "尚未完成";
+    }
+});
+
+
+const bridgeInput = document.querySelector("#bridge");
+const bridgeStatus = document.querySelector("#bridge-status");
+
+bridgeInput.addEventListener("input", function () {
+    const actual = Number(bridgeInput.value);
+
+    if (actual >= 20) {
+        bridgeStatus.textContent = "✓ 已完成";
+    } else {
+        bridgeStatus.textContent = "尚未完成";
+    }
+});
+
+
+const calfInput = document.querySelector("#calf");
+const calfStatus = document.querySelector("#calf-status");
+
+calfInput.addEventListener("input", function () {
+    const actual = Number(calfInput.value);
+
+    if (actual >= 25) {
+        calfStatus.textContent = "✓ 已完成";
+    } else {
+        calfStatus.textContent = "尚未完成";
+    }
+});
+
+
+const wallSitInput = document.querySelector("#wall-sit");
+const wallSitStatus = document.querySelector("#wall-sit-status");
+
+wallSitInput.addEventListener("input", function () {
+    const actual = Number(wallSitInput.value);
+
+    if (actual >= 30) {
+        wallSitStatus.textContent = "✓ 已完成";
+    } else {
+        wallSitStatus.textContent = "尚未完成";
+    }
+});
