@@ -1,8 +1,10 @@
 const welcomePage = document.querySelector("#welcome-page");
 const nicknamePage = document.querySelector("#nickname-page");
+const planPage = document.querySelector("#plan-page");
 
 const startButton = document.querySelector(".start-button");
 const nicknameButton = document.querySelector("#nickname-button");
+const planButton = document.querySelector("#plan-button");
 
 const nicknameInput = document.querySelector("#nickname");
 
@@ -26,6 +28,7 @@ nicknameButton.addEventListener("click", function () {
 
     localStorage.setItem("nickname", nickname);
 
-    alert("歡迎你，" + nickname + "！");
+    nicknamePage.style.display = "none";
+    planPage.style.display = "block";
 
 });
