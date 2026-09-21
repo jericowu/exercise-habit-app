@@ -1,6 +1,7 @@
 const welcomePage = document.querySelector("#welcome-page");
 const nicknamePage = document.querySelector("#nickname-page");
 const planPage = document.querySelector("#plan-page");
+const todayPage = document.querySelector("#today-page");
 
 const startButton = document.querySelector(".start-button");
 const nicknameButton = document.querySelector("#nickname-button");
@@ -39,7 +40,6 @@ planButton.addEventListener("click", function () {
     localStorage.setItem("planStarted", "true");
 
     planPage.style.display = "none";
-
-    alert("運動計畫已開始！");
+    todayPage.style.display = "block";
 
 });
