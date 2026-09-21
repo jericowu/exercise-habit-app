@@ -16,30 +16,74 @@
 
     <div class="app">
 
-        <header class="header">
-            <h1>今天也動一下吧！</h1>
-            <p>建立你的運動習慣，每天動一下。</p>
-        </header>
+        <!-- 首頁 -->
+        <section id="welcome-page">
 
-        <main class="content">
+            <header class="header">
+                <h1>今天也動一下吧！</h1>
+                <p>建立你的運動習慣，每天動一下。</p>
+            </header>
 
-            <div class="card">
-                <h2>開始你的運動計畫</h2>
+            <main class="content">
 
-                <p>
-                    每天完成今天的運動，
-                    一點一點建立習慣。
-                </p>
+                <div class="card">
+                    <h2>開始你的運動計畫</h2>
 
-                <button class="start-button">
-                    開始使用
-                </button>
-            </div>
+                    <p>
+                        每天完成今天的運動，
+                        一點一點建立習慣。
+                    </p>
 
-        </main>
+                    <button class="start-button">
+                        開始使用
+                    </button>
+                </div>
+
+            </main>
+
+        </section>
+
+
+        <!-- 暱稱頁面 -->
+        <section id="nickname-page" style="display: none;">
+
+            <header class="header">
+                <h1>請輸入你的暱稱</h1>
+                <p>這個暱稱會用來辨識你的運動紀錄。</p>
+            </header>
+
+            <main class="content">
+
+                <div class="card">
+
+                    <label for="nickname">
+                        暱稱
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nickname"
+                        placeholder="例如：小明"
+                    >
+
+                    <button
+                        class="start-button"
+                        id="nickname-button"
+                    >
+                        下一步
+                    </button>
+
+                </div>
+
+            </main>
+
+        </section>
 
     </div>
+
+
     <script src="script.js"></script>
+
 </body>
 
 </html>
