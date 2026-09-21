@@ -47,6 +47,19 @@ planButton.addEventListener("click", function () {
 const squatInput = document.querySelector("#squat");
 const squatStatus = document.querySelector("#squat-status");
 
+const lungeInput = document.querySelector("#lunge");
+const lungeStatus = document.querySelector("#lunge-status");
+
+const bridgeInput = document.querySelector("#bridge");
+const bridgeStatus = document.querySelector("#bridge-status");
+
+const calfInput = document.querySelector("#calf");
+const calfStatus = document.querySelector("#calf-status");
+
+const wallSitInput = document.querySelector("#wall-sit");
+const wallSitStatus = document.querySelector("#wall-sit-status");
+
+
 squatInput.addEventListener("input", function () {
 
     const actual = Number(squatInput.value);
@@ -59,10 +72,9 @@ squatInput.addEventListener("input", function () {
 
 });
 
-const lungeInput = document.querySelector("#lunge");
-const lungeStatus = document.querySelector("#lunge-status");
 
 lungeInput.addEventListener("input", function () {
+
     const actual = Number(lungeInput.value);
 
     if (actual >= 10) {
@@ -70,13 +82,12 @@ lungeInput.addEventListener("input", function () {
     } else {
         lungeStatus.textContent = "尚未完成";
     }
+
 });
 
 
-const bridgeInput = document.querySelector("#bridge");
-const bridgeStatus = document.querySelector("#bridge-status");
-
 bridgeInput.addEventListener("input", function () {
+
     const actual = Number(bridgeInput.value);
 
     if (actual >= 20) {
@@ -84,13 +95,12 @@ bridgeInput.addEventListener("input", function () {
     } else {
         bridgeStatus.textContent = "尚未完成";
     }
+
 });
 
 
-const calfInput = document.querySelector("#calf");
-const calfStatus = document.querySelector("#calf-status");
-
 calfInput.addEventListener("input", function () {
+
     const actual = Number(calfInput.value);
 
     if (actual >= 25) {
@@ -98,13 +108,12 @@ calfInput.addEventListener("input", function () {
     } else {
         calfStatus.textContent = "尚未完成";
     }
+
 });
 
 
-const wallSitInput = document.querySelector("#wall-sit");
-const wallSitStatus = document.querySelector("#wall-sit-status");
-
 wallSitInput.addEventListener("input", function () {
+
     const actual = Number(wallSitInput.value);
 
     if (actual >= 30) {
@@ -112,4 +121,5 @@ wallSitInput.addEventListener("input", function () {
     } else {
         wallSitStatus.textContent = "尚未完成";
     }
+
 });
