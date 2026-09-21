@@ -32,3 +32,14 @@ nicknameButton.addEventListener("click", function () {
     planPage.style.display = "block";
 
 });
+
+
+planButton.addEventListener("click", function () {
+
+    localStorage.setItem("planStarted", "true");
+
+    planPage.style.display = "none";
+
+    alert("運動計畫已開始！");
+
+});
