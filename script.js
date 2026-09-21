@@ -43,3 +43,18 @@ planButton.addEventListener("click", function () {
     todayPage.style.display = "block";
 
 });
+
+const squatInput = document.querySelector("#squat");
+const squatStatus = document.querySelector("#squat-status");
+
+squatInput.addEventListener("input", function () {
+
+    const actual = Number(squatInput.value);
+
+    if (actual >= 20) {
+        squatStatus.textContent = "✓ 已完成";
+    } else {
+        squatStatus.textContent = "尚未完成";
+    }
+
+});
