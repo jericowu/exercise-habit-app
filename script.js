@@ -336,6 +336,32 @@ todayExercises.forEach(function (exercise, index) {
 
 });
 
+todayExercises.forEach(function (exercise, index) {
+
+    // 建立五張卡片
+    // 加入 input 判斷功能
+
+});
+
+
+// ↓ 新增這一段
+
+if (savedTodayRecord) {
+
+    // 讀取今天以前儲存的資料
+    // 填回五個 input
+
+}
+
+
+// ↓ 我們上一個步驟做的
+
+completeButton.addEventListener("click", function () {
+
+    // 儲存今天的資料
+
+});
+
 completeButton.addEventListener("click", function () {
 
     const exerciseRecords = [];
