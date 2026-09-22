@@ -277,6 +277,10 @@ const exerciseList = document.querySelector("#exercise-list");
 
 const todayExercises = exercisePlan[currentPlanDay];
 
+console.log("exerciseList：", exerciseList);
+console.log("currentPlanDay：", currentPlanDay);
+console.log("todayExercises：", todayExercises);
+
 todayExercises.forEach(function (exercise, index) {
 
     const card = document.createElement("div");
