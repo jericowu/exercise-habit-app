@@ -15,6 +15,7 @@ const nicknamePage = document.querySelector("#nickname-page");
 const planPage = document.querySelector("#plan-page");
 const todayPage = document.querySelector("#today-page");
 const streakDisplay = document.querySelector("#streak-display");
+const highestStreakDisplay = document.querySelector("#highest-streak-display");
 
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
@@ -255,5 +256,65 @@ function getCurrentStreak() {
 
 }
 
+function getHighestStreak() {
+
+    let highestStreak = 0;
+    let currentStreak = 0;
+
+    let date = new Date();
+
+    while (true) {
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+
+        const dateString = `${year}-${month}-${day}`;
+
+        const record = localStorage.getItem(
+            "exercise-" + dateString
+        );
+
+        if (record) {
+
+            const todayRecord = JSON.parse(record);
+
+            if (todayRecord.completed) {
+
+                currentStreak++;
+
+                if (currentStreak > highestStreak) {
+                    highestStreak = currentStreak;
+                }
+
+            } else {
+
+                currentStreak = 0;
+
+            }
+
+        } else {
+
+            currentStreak = 0;
+
+        }
+
+        date.setDate(date.getDate() - 1);
+
+        if (date < new Date("2020-01-01")) {
+            break;
+        }
+
+    }
+
+    return highestStreak;
+
+}
+
 streakDisplay.textContent =
     "目前連續完成 " + getCurrentStreak() + " 天";
+
+highestStreakDisplay.textContent =
+    "歷史最高連續 " + getHighestStreak() + " 天";
+
+
