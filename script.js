@@ -340,7 +340,10 @@ if (savedTodayRecord) {
 
     const todayRecord = JSON.parse(savedTodayRecord);
 
-    if (todayRecord.exercises) {
+    if (
+        todayRecord.exercises &&
+        todayRecord.planDay === currentPlanDay
+    ) {
 
         todayRecord.exercises.forEach(function (record, index) {
 
