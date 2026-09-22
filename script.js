@@ -336,31 +336,39 @@ todayExercises.forEach(function (exercise, index) {
 
 });
 
-todayExercises.forEach(function (exercise, index) {
-
-    // 建立五張卡片
-    // 加入 input 判斷功能
-
-});
-
-
-// ↓ 新增這一段
-
 if (savedTodayRecord) {
 
-    // 讀取今天以前儲存的資料
-    // 填回五個 input
+    const todayRecord = JSON.parse(savedTodayRecord);
+
+    if (todayRecord.exercises) {
+
+        todayRecord.exercises.forEach(function (record, index) {
+
+            const input = document.querySelector(
+                "#exercise-" + index
+            );
+
+            const status = document.querySelector(
+                "#exercise-status-" + index
+            );
+
+            input.value = record.actual;
+
+            if (record.actual >= record.target) {
+
+                status.textContent = "✓ 已完成";
+
+            } else {
+
+                status.textContent = "尚未完成";
+
+            }
+
+        });
+
+    }
 
 }
-
-
-// ↓ 我們上一個步驟做的
-
-completeButton.addEventListener("click", function () {
-
-    // 儲存今天的資料
-
-});
 
 completeButton.addEventListener("click", function () {
 
