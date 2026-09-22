@@ -310,4 +310,28 @@ todayExercises.forEach(function (exercise, index) {
 
     exerciseList.appendChild(card);
 
+    const input = document.querySelector(
+        "#exercise-" + index
+    );
+
+    const status = document.querySelector(
+        "#exercise-status-" + index
+    );
+
+    input.addEventListener("input", function () {
+
+        const actual = Number(input.value);
+
+        if (actual >= exercise.target) {
+
+            status.textContent = "✓ 已完成";
+
+        } else {
+
+            status.textContent = "尚未完成";
+
+        }
+
+    });
+
 });
