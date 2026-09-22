@@ -416,3 +416,38 @@ console.log(
     "今天的運動：",
     exercisePlan[currentPlanDay]
 );
+
+const exerciseList = document.querySelector("#exercise-list");
+
+const todayExercises = exercisePlan[currentPlanDay];
+
+todayExercises.forEach(function (exercise, index) {
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+        <h2>${exercise.name}</h2>
+
+        <p>目標：${exercise.target} ${exercise.unit}</p>
+
+        <label for="exercise-${index}">
+            實際完成
+        </label>
+
+        <input
+            type="number"
+            id="exercise-${index}"
+            min="0"
+            placeholder="輸入數值"
+        >
+
+        <p id="exercise-status-${index}">
+            尚未完成
+        </p>
+    `;
+
+    exerciseList.appendChild(card);
+
+});
