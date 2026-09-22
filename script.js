@@ -3,6 +3,9 @@ const nicknamePage = document.querySelector("#nickname-page");
 const planPage = document.querySelector("#plan-page");
 const todayPage = document.querySelector("#today-page");
 
+const savedNickname = localStorage.getItem("nickname");
+const planStarted = localStorage.getItem("planStarted");
+
 const startButton = document.querySelector(".start-button");
 const nicknameButton = document.querySelector("#nickname-button");
 const planButton = document.querySelector("#plan-button");
@@ -168,3 +171,12 @@ completeButton.addEventListener("click", function () {
     }
 
 });
+
+if (savedNickname && planStarted === "true") {
+
+    welcomePage.style.display = "none";
+    nicknamePage.style.display = "none";
+    planPage.style.display = "none";
+    todayPage.style.display = "block";
+
+}
