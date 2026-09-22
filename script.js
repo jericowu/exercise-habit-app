@@ -16,6 +16,7 @@ const planPage = document.querySelector("#plan-page");
 const todayPage = document.querySelector("#today-page");
 const streakDisplay = document.querySelector("#streak-display");
 const highestStreakDisplay = document.querySelector("#highest-streak-display");
+const planDayDisplay = document.querySelector("#plan-day-display");
 
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
@@ -347,3 +348,6 @@ function getCurrentPlanDay() {
 const currentPlanDay = getCurrentPlanDay();
 
 console.log("今天是 Day " + currentPlanDay);
+
+planDayDisplay.textContent =
+    "今天是 Day " + currentPlanDay;
