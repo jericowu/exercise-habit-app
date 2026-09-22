@@ -14,6 +14,7 @@ const welcomePage = document.querySelector("#welcome-page");
 const nicknamePage = document.querySelector("#nickname-page");
 const planPage = document.querySelector("#plan-page");
 const todayPage = document.querySelector("#today-page");
+const streakDisplay = document.querySelector("#streak-display");
 
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
@@ -216,3 +217,43 @@ if (savedTodayRecord) {
     wallSitStatus.textContent = "✓ 已完成";
 
 }
+
+function getCurrentStreak() {
+
+    let streak = 0;
+    let date = new Date();
+
+    while (true) {
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+
+        const dateString = `${year}-${month}-${day}`;
+
+        const record = localStorage.getItem(
+            "exercise-" + dateString
+        );
+
+        if (!record) {
+            break;
+        }
+
+        const todayRecord = JSON.parse(record);
+
+        if (!todayRecord.completed) {
+            break;
+        }
+
+        streak++;
+
+        date.setDate(date.getDate() - 1);
+
+    }
+
+    return streak;
+
+}
+
+streakDisplay.textContent =
+    "目前連續完成 " + getCurrentStreak() + " 天";
