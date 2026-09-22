@@ -86,6 +86,26 @@ function getCurrentStreak() {
     let streak = 0;
     let date = new Date();
 
+    const todayString = getLocalDate();
+
+    const todayRecord = localStorage.getItem(
+        "exercise-" + todayString
+    );
+
+    if (!todayRecord) {
+
+        date.setDate(date.getDate() - 1);
+
+    } else {
+
+        const record = JSON.parse(todayRecord);
+        
+        if (!record.completed) {
+            return 0;
+        }
+
+    }
+
     while (true) {
 
         const year = date.getFullYear();
@@ -102,9 +122,9 @@ function getCurrentStreak() {
             break;
         }
 
-        const todayRecord = JSON.parse(record);
+        const exerciseRecord = JSON.parse(record);
 
-        if (!todayRecord.completed) {
+        if (!exerciseRecord.completed) {
             break;
         }
 
@@ -432,6 +452,12 @@ completeButton.addEventListener("click", function () {
         "exercise-" + getLocalDate(),
         JSON.stringify(todayRecord)
     );
+
+    streakDisplay.textContent =
+    "目前連續完成 " + getCurrentStreak() + " 天";
+
+    highestStreakDisplay.textContent =
+    "歷史最高連續 " + getHighestStreak() + " 天";
 
     alert("🎉 今天的運動完成了！");
 
