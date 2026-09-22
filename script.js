@@ -62,6 +62,11 @@ planButton.addEventListener("click", function () {
 
     localStorage.setItem("planStarted", "true");
 
+    localStorage.setItem(
+        "planStartDate",
+        getLocalDate()
+    );
+
     planPage.style.display = "none";
     todayPage.style.display = "block";
 
