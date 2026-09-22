@@ -351,3 +351,68 @@ console.log("今天是 Day " + currentPlanDay);
 
 planDayDisplay.textContent =
     "今天是 Day " + currentPlanDay;
+
+const exercisePlan = {
+
+    1: [
+        { name: "深蹲", target: 20, unit: "次" },
+        { name: "弓箭步", target: 10, unit: "次／側" },
+        { name: "抬臀", target: 20, unit: "次" },
+        { name: "踮腳", target: 25, unit: "次" },
+        { name: "靠牆深蹲", target: 30, unit: "秒" }
+    ],
+
+    2: [
+        { name: "伏地挺身", target: 10, unit: "次" },
+        { name: "仰臥起坐", target: 15, unit: "次" },
+        { name: "開合手", target: 20, unit: "次" },
+        { name: "棒式", target: 30, unit: "秒" },
+        { name: "原地踏步", target: 3, unit: "分鐘" }
+    ],
+
+    3: [
+        { name: "仰臥起坐", target: 20, unit: "次" },
+        { name: "抬膝", target: 20, unit: "次" },
+        { name: "棒式", target: 30, unit: "秒" },
+        { name: "側抬腿", target: 10, unit: "次／側" },
+        { name: "原地踏步", target: 3, unit: "分鐘" }
+    ],
+
+    4: [
+        { name: "開合跳", target: 30, unit: "次" },
+        { name: "高抬腿", target: 30, unit: "次／側" },
+        { name: "深蹲", target: 20, unit: "次" },
+        { name: "原地踏步", target: 5, unit: "分鐘" },
+        { name: "伸展", target: 3, unit: "分鐘" }
+    ],
+
+    5: [
+        { name: "深蹲", target: 20, unit: "次" },
+        { name: "後跨弓箭步", target: 10, unit: "次／側" },
+        { name: "仰臥起坐", target: 15, unit: "次" },
+        { name: "抬臀", target: 20, unit: "次" },
+        { name: "棒式", target: 30, unit: "秒" }
+    ],
+
+    6: [
+        { name: "深蹲", target: 20, unit: "次" },
+        { name: "伏地挺身", target: 10, unit: "次" },
+        { name: "開合跳", target: 30, unit: "次" },
+        { name: "仰臥起坐", target: 15, unit: "次" },
+        { name: "棒式", target: 30, unit: "秒" }
+    ],
+
+    7: [
+        { name: "深蹲", target: 15, unit: "次" },
+        { name: "原地踏步", target: 5, unit: "分鐘" },
+        { name: "開合手", target: 20, unit: "次" },
+        { name: "仰臥起坐", target: 15, unit: "次" },
+        { name: "伸展", target: 5, unit: "分鐘" }
+    ]
+
+};
+
+console.log(
+    "今天的運動：",
+    exercisePlan[currentPlanDay]
+);
