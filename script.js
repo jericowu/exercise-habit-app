@@ -322,4 +322,28 @@ streakDisplay.textContent =
 highestStreakDisplay.textContent =
     "歷史最高連續 " + getHighestStreak() + " 天";
 
+function getCurrentPlanDay() {
 
+    const planStartDate = localStorage.getItem("planStartDate");
+
+    if (!planStartDate) {
+        return null;
+    }
+
+    const startDate = new Date(planStartDate);
+    const todayDate = new Date(getLocalDate());
+
+    const difference =
+        Math.floor(
+            (todayDate - startDate) / (1000 * 60 * 60 * 24)
+        );
+
+    const planDay = (difference % 7) + 1;
+
+    return planDay;
+
+}
+
+const currentPlanDay = getCurrentPlanDay();
+
+console.log("今天是 Day " + currentPlanDay);
