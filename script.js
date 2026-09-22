@@ -1,3 +1,15 @@
+function getLocalDate() {
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
 const welcomePage = document.querySelector("#welcome-page");
 const nicknamePage = document.querySelector("#nickname-page");
 const planPage = document.querySelector("#plan-page");
@@ -6,7 +18,7 @@ const todayPage = document.querySelector("#today-page");
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
 
-const today = new Date().toISOString().split("T")[0];
+const today = getLocalDate();
 
 const savedTodayRecord = localStorage.getItem(
     "exercise-" + today
@@ -151,7 +163,7 @@ completeButton.addEventListener("click", function () {
         wallSit >= 30
     ) {
 
-        const today = new Date().toISOString().split("T")[0];
+        const today = getLocalDate();
 
         const todayRecord = {
             date: today,
