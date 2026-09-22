@@ -195,7 +195,7 @@ function getCurrentPlanDay() {
             (todayDate - startDate) / (1000 * 60 * 60 * 24)
         );
 
-    const planDay = (difference % 7) + 1;
+    const planDay = difference + 1;
 
     return planDay;
 
@@ -203,7 +203,11 @@ function getCurrentPlanDay() {
 
 const currentPlanDay = getCurrentPlanDay();
 
+const currentCycleDay =
+    ((currentPlanDay - 1) % 7) + 1;
+
 console.log("今天是 Day " + currentPlanDay);
+console.log("今天使用第 " + currentCycleDay + " 套運動");
 
 planDayDisplay.textContent =
     "今天是 Day " + currentPlanDay;
@@ -270,12 +274,12 @@ const exercisePlan = {
 
 console.log(
     "今天的運動：",
-    exercisePlan[currentPlanDay]
+    exercisePlan[currentCycleDay]
 );
 
 const exerciseList = document.querySelector("#exercise-list");
 
-const todayExercises = exercisePlan[currentPlanDay];
+const todayExercises = exercisePlan[currentCycleDay];
 
 console.log("exerciseList：", exerciseList);
 console.log("currentPlanDay：", currentPlanDay);
