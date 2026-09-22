@@ -335,3 +335,63 @@ todayExercises.forEach(function (exercise, index) {
     });
 
 });
+
+completeButton.addEventListener("click", function () {
+
+    const exerciseRecords = [];
+
+    let allCompleted = true;
+
+    todayExercises.forEach(function (exercise, index) {
+
+        const input = document.querySelector(
+            "#exercise-" + index
+        );
+
+        const actual = Number(input.value);
+
+        const completed =
+            input.value !== "" &&
+            actual >= exercise.target;
+
+        if (!completed) {
+            allCompleted = false;
+        }
+
+        exerciseRecords.push({
+            name: exercise.name,
+            target: exercise.target,
+            actual: actual,
+            unit: exercise.unit,
+            completed: completed
+        });
+
+    });
+
+    if (!allCompleted) {
+
+        alert("還有運動尚未完成！");
+        return;
+
+    }
+
+    const todayRecord = {
+
+        date: getLocalDate(),
+
+        planDay: currentPlanDay,
+
+        completed: true,
+
+        exercises: exerciseRecords
+
+    };
+
+    localStorage.setItem(
+        "exercise-" + getLocalDate(),
+        JSON.stringify(todayRecord)
+    );
+
+    alert("🎉 今天的運動完成了！");
+
+});
