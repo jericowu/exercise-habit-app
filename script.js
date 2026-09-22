@@ -6,6 +6,12 @@ const todayPage = document.querySelector("#today-page");
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
 
+const today = new Date().toISOString().split("T")[0];
+
+const savedTodayRecord = localStorage.getItem(
+    "exercise-" + today
+);
+
 const startButton = document.querySelector(".start-button");
 const nicknameButton = document.querySelector("#nickname-button");
 const planButton = document.querySelector("#plan-button");
@@ -178,5 +184,23 @@ if (savedNickname && planStarted === "true") {
     nicknamePage.style.display = "none";
     planPage.style.display = "none";
     todayPage.style.display = "block";
+
+}
+
+if (savedTodayRecord) {
+
+    const todayRecord = JSON.parse(savedTodayRecord);
+
+    squatInput.value = todayRecord.squat;
+    lungeInput.value = todayRecord.lunge;
+    bridgeInput.value = todayRecord.bridge;
+    calfInput.value = todayRecord.calf;
+    wallSitInput.value = todayRecord.wallSit;
+
+    squatStatus.textContent = "✓ 已完成";
+    lungeStatus.textContent = "✓ 已完成";
+    bridgeStatus.textContent = "✓ 已完成";
+    calfStatus.textContent = "✓ 已完成";
+    wallSitStatus.textContent = "✓ 已完成";
 
 }
