@@ -82,6 +82,9 @@ const settingsPage = document.querySelector("#settings-page");
 const settingsNickname = document.querySelector("#settings-nickname");
 const saveNicknameButton = document.querySelector("#save-nickname-button");
 
+const settingsPlanList =
+    document.querySelector("#settings-plan-list");
+
 const bottomNav = document.querySelector("#bottom-nav");
 
 const navToday = document.querySelector("#nav-today");
@@ -408,11 +411,8 @@ if (savedTodayRecord) {
                 status.textContent = "尚未完成";
 
             }
-
         });
-
     }
-
 }
 
 completeButton.addEventListener("click", function () {
@@ -798,5 +798,38 @@ navSettings.addEventListener("click", function () {
 
     settingsNickname.value =
         localStorage.getItem("nickname") || "";
+    renderSettingsPlan();
 
 });
+
+function renderSettingsPlan() {
+
+    settingsPlanList.innerHTML = "";
+
+    for (let day = 1; day <= 7; day++) {
+
+        const dayTitle = document.createElement("h3");
+
+        dayTitle.textContent = "Day " + day;
+
+        settingsPlanList.appendChild(dayTitle);
+
+
+        exercisePlan[day].forEach(function (exercise) {
+
+            const item = document.createElement("p");
+
+            item.textContent =
+                exercise.name +
+                "：" +
+                exercise.target +
+                " " +
+                exercise.unit;
+
+            settingsPlanList.appendChild(item);
+
+        });
+
+    }
+
+}
