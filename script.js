@@ -68,6 +68,7 @@ planButton.addEventListener("click", function () {
     planPage.style.display = "none";
     todayPage.style.display = "block";
     bottomNav.style.display = "block";
+    navToday.classList.add("active");
 
 });
 
@@ -96,6 +97,7 @@ if (savedNickname && planStarted === "true") {
     todayPage.style.display = "block";
 
     bottomNav.style.display = "block";
+    navToday.classList.add("active");
 
 }
 
@@ -738,7 +740,7 @@ saveNicknameButton.addEventListener("click", function () {
 
 });
 
-function showMainPage(page) {
+function showMainPage(page, activeButton) {
 
     todayPage.style.display = "none";
     historyPage.style.display = "none";
@@ -747,18 +749,24 @@ function showMainPage(page) {
 
     page.style.display = "block";
 
+    navToday.classList.remove("active");
+    navHistory.classList.remove("active");
+    navStatistics.classList.remove("active");
+    navSettings.classList.remove("active");
+
+    activeButton.classList.add("active");
 }
 
 navToday.addEventListener("click", function () {
 
-    showMainPage(todayPage);
+    showMainPage(todayPage, navToday);
 
 });
 
 
 navHistory.addEventListener("click", function () {
 
-    showMainPage(historyPage);
+    showMainPage(historyPage, navHistory);
 
     renderHistory();
 
@@ -767,7 +775,7 @@ navHistory.addEventListener("click", function () {
 
 navStatistics.addEventListener("click", function () {
 
-    showMainPage(statisticsPage);
+    showMainPage(statisticsPage, navStatistics);
 
     const result = calculateWeeklyRate();
 
@@ -786,7 +794,7 @@ navStatistics.addEventListener("click", function () {
 
 navSettings.addEventListener("click", function () {
 
-    showMainPage(settingsPage);
+    showMainPage(settingsPage, navSettings);
 
     settingsNickname.value =
         localStorage.getItem("nickname") || "";
