@@ -31,7 +31,7 @@ body {
 }
 
 .content {
-    padding: 0 24px 40px;
+    padding: 0 24px 100px;
 }
 
 .card {
@@ -63,18 +63,22 @@ body {
 
 /* 底部導航列 */
 #bottom-nav {
-    position: sticky;
+    position: fixed;
     bottom: 0;
-
-    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
 
     width: 100%;
-    height: 64px;
+    max-width: 480px;
+    height: 70px;
+
+    display: flex !important;
+    align-items: stretch;
 
     background: white;
     border-top: 1px solid #ddd;
 
-    z-index: 100;
+    z-index: 1000;
 }
 
 
@@ -82,9 +86,16 @@ body {
 #bottom-nav button {
     flex: 1;
 
-    border: none;
-    background: white;
+    margin: 0;
+    padding: 0;
 
+    border: 0;
+    outline: none;
+    border-radius: 0;
+
+    background: transparent;
+
+    font-family: inherit;
     font-size: 15px;
     color: #777;
 
@@ -92,7 +103,13 @@ body {
 }
 
 
-/* 按下時的效果 */
+/* 滑鼠移到導航按鈕 */
+#bottom-nav button:hover {
+    background: #f8f8f8;
+}
+
+
+/* 按下導航按鈕 */
 #bottom-nav button:active {
-    background: #f2f2f2;
+    background: #eeeeee;
 }
