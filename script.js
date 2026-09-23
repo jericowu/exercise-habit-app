@@ -257,7 +257,7 @@ console.log("今天使用第 " + currentCycleDay + " 套運動");
 planDayDisplay.textContent =
     "今天是 Day " + currentPlanDay;
 
-const exercisePlan = {
+let exercisePlan = {
 
     1: [
         { name: "深蹲", target: 20, unit: "次" },
@@ -316,6 +316,16 @@ const exercisePlan = {
     ]
 
 };
+
+const savedCustomPlan =
+    localStorage.getItem("customExercisePlan");
+
+if (savedCustomPlan) {
+
+    exercisePlan =
+        JSON.parse(savedCustomPlan);
+
+}
 
 console.log(
     "今天的運動：",
