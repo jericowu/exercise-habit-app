@@ -471,6 +471,8 @@ historyButton.addEventListener("click", function () {
     todayPage.style.display = "none";
     historyPage.style.display = "block";
 
+    renderHistory();
+
 });
 
 backToTodayButton.addEventListener("click", function () {
@@ -480,3 +482,48 @@ backToTodayButton.addEventListener("click", function () {
 
 });
 
+function renderHistory() {
+
+    historyList.innerHTML = "";
+
+    const records = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const key = localStorage.key(i);
+
+        if (key.startsWith("exercise-")) {
+
+            const record = JSON.parse(
+                localStorage.getItem(key)
+            );
+
+            if (
+                record.date &&
+                record.planDay &&
+                record.exercises
+            ) {
+                records.push(record);
+            }
+        }
+    }
+
+    records.sort(function (a, b) {
+        return b.date.localeCompare(a.date);
+    });
+
+    records.forEach(function (record) {
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <h2>${record.date}</h2>
+            <p>Day ${record.planDay}</p>
+            <p>✓ 已完成</p>
+            <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
+        `;
+
+        historyList.appendChild(card);
+    });
+}
