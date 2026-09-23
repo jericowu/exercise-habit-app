@@ -463,8 +463,9 @@ completeButton.addEventListener("click", function () {
     "歷史最高連續 " + getHighestStreak() + " 天";
 
     alert("🎉 今天的運動完成了！");
+});
 
-    historyButton.addEventListener("click", function () {
+historyButton.addEventListener("click", function () {
 
     todayPage.style.display = "none";
     historyPage.style.display = "block";
@@ -478,4 +479,3 @@ backToTodayButton.addEventListener("click", function () {
 
 });
 
-});
