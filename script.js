@@ -815,16 +815,24 @@ function renderSettingsPlan() {
         settingsPlanList.appendChild(dayTitle);
 
 
-        exercisePlan[day].forEach(function (exercise) {
+        exercisePlan[day].forEach(function (exercise, index) {
 
             const item = document.createElement("p");
 
-            item.textContent =
-                exercise.name +
-                "：" +
-                exercise.target +
-                " " +
-                exercise.unit;
+            item.innerHTML = `
+                <label for="settings-day-${day}-exercise-${index}">
+                    ${exercise.name}
+                </label>
+
+                <input
+                    type="number"
+                    id="settings-day-${day}-exercise-${index}"
+                    value="${exercise.target}"
+                    min="1"
+                >
+
+                ${exercise.unit}
+            `;
 
             settingsPlanList.appendChild(item);
 
