@@ -67,26 +67,26 @@ planButton.addEventListener("click", function () {
 
     planPage.style.display = "none";
     todayPage.style.display = "block";
+    bottomNav.style.display = "block";
 
 });
 
 const completeButton = document.querySelector("#complete-button");
 const historyPage = document.querySelector("#history-page");
-const historyButton = document.querySelector("#history-button");
-const backToTodayButton = document.querySelector("#back-to-today-button");
 const historyList = document.querySelector("#history-list");
 const statisticsPage = document.querySelector("#statistics-page");
-const statisticsButton = document.querySelector("#statistics-button");
-const statisticsBackButton = document.querySelector("#statistics-back-button");
 const weeklyRate = document.querySelector("#weekly-rate");
 const exerciseTotals = document.querySelector("#exercise-totals");
-
 const settingsPage = document.querySelector("#settings-page");
-const settingsButton = document.querySelector("#settings-button");
-const settingsBackButton = document.querySelector("#settings-back-button");
-
 const settingsNickname = document.querySelector("#settings-nickname");
 const saveNicknameButton = document.querySelector("#save-nickname-button");
+
+const bottomNav = document.querySelector("#bottom-nav");
+
+const navToday = document.querySelector("#nav-today");
+const navHistory = document.querySelector("#nav-history");
+const navStatistics = document.querySelector("#nav-statistics");
+const navSettings = document.querySelector("#nav-settings");
 
 if (savedNickname && planStarted === "true") {
 
@@ -94,6 +94,8 @@ if (savedNickname && planStarted === "true") {
     nicknamePage.style.display = "none";
     planPage.style.display = "none";
     todayPage.style.display = "block";
+
+    bottomNav.style.display = "block";
 
 }
 
@@ -476,21 +478,6 @@ completeButton.addEventListener("click", function () {
     alert("🎉 今天的運動完成了！");
 });
 
-historyButton.addEventListener("click", function () {
-
-    todayPage.style.display = "none";
-    historyPage.style.display = "block";
-
-    renderHistory();
-
-});
-
-backToTodayButton.addEventListener("click", function () {
-
-    historyPage.style.display = "none";
-    todayPage.style.display = "block";
-
-});
 
 function renderHistory() {
 
@@ -574,32 +561,6 @@ function renderHistory() {
     historyList.appendChild(card);
 });
 }
-
-statisticsButton.addEventListener("click", function () {
-
-    todayPage.style.display = "none";
-    statisticsPage.style.display = "block";
-
-    const result = calculateWeeklyRate();
-
-    weeklyRate.textContent =
-        result.completedDays +
-        " / " +
-        result.totalDays +
-        " 天（" +
-        result.percentage +
-        "%）";
-
-    renderExerciseTotals();
-
-});
-
-statisticsBackButton.addEventListener("click", function () {
-
-    statisticsPage.style.display = "none";
-    todayPage.style.display = "block";
-
-});
 
 function calculateWeeklyRate() {
 
@@ -758,23 +719,6 @@ function renderExerciseTotals() {
     });
 }
 
-settingsButton.addEventListener("click", function () {
-
-    todayPage.style.display = "none";
-    settingsPage.style.display = "block";
-
-    settingsNickname.value =
-        localStorage.getItem("nickname") || "";
-
-});
-
-settingsBackButton.addEventListener("click", function () {
-
-    settingsPage.style.display = "none";
-    todayPage.style.display = "block";
-
-});
-
 saveNicknameButton.addEventListener("click", function () {
 
     const newNickname =
@@ -791,5 +735,60 @@ saveNicknameButton.addEventListener("click", function () {
     );
 
     alert("暱稱已更新！");
+
+});
+
+function showMainPage(page) {
+
+    todayPage.style.display = "none";
+    historyPage.style.display = "none";
+    statisticsPage.style.display = "none";
+    settingsPage.style.display = "none";
+
+    page.style.display = "block";
+
+}
+
+navToday.addEventListener("click", function () {
+
+    showMainPage(todayPage);
+
+});
+
+
+navHistory.addEventListener("click", function () {
+
+    showMainPage(historyPage);
+
+    renderHistory();
+
+});
+
+
+navStatistics.addEventListener("click", function () {
+
+    showMainPage(statisticsPage);
+
+    const result = calculateWeeklyRate();
+
+    weeklyRate.textContent =
+        result.completedDays +
+        " / " +
+        result.totalDays +
+        " 天（" +
+        result.percentage +
+        "%）";
+
+    renderExerciseTotals();
+
+});
+
+
+navSettings.addEventListener("click", function () {
+
+    showMainPage(settingsPage);
+
+    settingsNickname.value =
+        localStorage.getItem("nickname") || "";
 
 });
