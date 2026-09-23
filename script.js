@@ -79,6 +79,7 @@ const statisticsPage = document.querySelector("#statistics-page");
 const statisticsButton = document.querySelector("#statistics-button");
 const statisticsBackButton = document.querySelector("#statistics-back-button");
 const weeklyRate = document.querySelector("#weekly-rate");
+const exerciseTotals = document.querySelector("#exercise-totals");
 
 if (savedNickname && planStarted === "true") {
 
@@ -582,6 +583,8 @@ statisticsButton.addEventListener("click", function () {
         result.percentage +
         "%）";
 
+    renderExerciseTotals();
+
 });
 
 statisticsBackButton.addEventListener("click", function () {
@@ -675,4 +678,75 @@ function calculateWeeklyRate() {
         totalDays: totalDays,
         percentage: percentage
     };
+}
+
+function calculateExerciseTotals() {
+
+    const totals = {};
+
+    for (let i = 0; i < localStorage.length; i++) {
+
+        const key = localStorage.key(i);
+
+        if (key.startsWith("exercise-")) {
+
+            const record = JSON.parse(
+                localStorage.getItem(key)
+            );
+
+            if (!record.exercises) {
+                continue;
+            }
+
+            record.exercises.forEach(function (exercise) {
+
+                const totalKey =
+                    exercise.name + "-" + exercise.unit;
+
+                if (!totals[totalKey]) {
+
+                    totals[totalKey] = {
+                        name: exercise.name,
+                        unit: exercise.unit,
+                        total: 0
+                    };
+
+                }
+
+                totals[totalKey].total += exercise.actual;
+
+            });
+        }
+    }
+
+    return totals;
+}
+
+function renderExerciseTotals() {
+
+    const totals = calculateExerciseTotals();
+
+    exerciseTotals.innerHTML = "";
+
+    const exercises = Object.values(totals);
+
+    if (exercises.length === 0) {
+        exerciseTotals.textContent = "目前還沒有運動紀錄";
+        return;
+    }
+
+    exercises.forEach(function (exercise) {
+
+        const item = document.createElement("p");
+
+        item.textContent =
+            exercise.name +
+            "：" +
+            exercise.total +
+            " " +
+            exercise.unit;
+
+        exerciseTotals.appendChild(item);
+
+    });
 }
