@@ -31,7 +31,7 @@ body {
 }
 
 .content {
-    padding: 0 24px 32px;
+    padding: 0 24px 40px;
 }
 
 .card {
@@ -59,4 +59,40 @@ body {
 
 .start-button:hover {
     opacity: 0.85;
+}
+
+/* 底部導航列 */
+#bottom-nav {
+    position: sticky;
+    bottom: 0;
+
+    display: flex;
+
+    width: 100%;
+    height: 64px;
+
+    background: white;
+    border-top: 1px solid #ddd;
+
+    z-index: 100;
+}
+
+
+/* 底部導航按鈕 */
+#bottom-nav button {
+    flex: 1;
+
+    border: none;
+    background: white;
+
+    font-size: 15px;
+    color: #777;
+
+    cursor: pointer;
+}
+
+
+/* 按下時的效果 */
+#bottom-nav button:active {
+    background: #f2f2f2;
 }
