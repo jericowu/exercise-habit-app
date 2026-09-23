@@ -514,16 +514,44 @@ function renderHistory() {
 
     records.forEach(function (record) {
 
-        const card = document.createElement("div");
-        card.className = "card";
+    const card = document.createElement("div");
+    card.className = "card";
 
-        card.innerHTML = `
-            <h2>${record.date}</h2>
-            <p>Day ${record.planDay}</p>
-            <p>✓ 已完成</p>
-            <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
+    card.innerHTML = `
+        <h2>${record.date}</h2>
+        <p>Day ${record.planDay}</p>
+        <p>✓ 已完成</p>
+        <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
+
+        <div class="history-details" style="display: none;"></div>
+    `;
+
+    const details = card.querySelector(".history-details");
+
+    record.exercises.forEach(function (exercise) {
+
+        const exerciseDetail = document.createElement("div");
+
+        exerciseDetail.innerHTML = `
+            <hr>
+            <p><strong>${exercise.name}</strong></p>
+            <p>目標：${exercise.target} ${exercise.unit}</p>
+            <p>實際：${exercise.actual} ${exercise.unit}</p>
         `;
 
-        historyList.appendChild(card);
+        details.appendChild(exerciseDetail);
     });
+
+    card.addEventListener("click", function () {
+
+        if (details.style.display === "none") {
+            details.style.display = "block";
+        } else {
+            details.style.display = "none";
+        }
+
+    });
+
+    historyList.appendChild(card);
+});
 }
