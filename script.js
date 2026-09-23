@@ -317,9 +317,7 @@ todayExercises.forEach(function (exercise, index) {
 
     card.innerHTML = `
         <h2>${exercise.name}</h2>
-
         <p>目標：${exercise.target} ${exercise.unit}</p>
-
         <label for="exercise-${index}">
             實際完成
         </label>
@@ -518,15 +516,18 @@ function renderHistory() {
     card.className = "card";
 
     card.innerHTML = `
-        <h2>${record.date}</h2>
-        <p>Day ${record.planDay}</p>
-        <p>✓ 已完成</p>
-        <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
+         <h2>${record.date}</h2>
+         <p>Day ${record.planDay}</p>
+         <p>✓ 已完成</p>
+         <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
 
-        <div class="history-details" style="display: none;"></div>
+         <p class="history-toggle">查看詳細紀錄 ▼</p>
+
+         <div class="history-details" style="display: none;"></div>
     `;
 
     const details = card.querySelector(".history-details");
+    const toggle = card.querySelector(".history-toggle");
 
     record.exercises.forEach(function (exercise) {
 
@@ -544,13 +545,19 @@ function renderHistory() {
 
     card.addEventListener("click", function () {
 
-        if (details.style.display === "none") {
-            details.style.display = "block";
-        } else {
-            details.style.display = "none";
-        }
+    if (details.style.display === "none") {
 
-    });
+        details.style.display = "block";
+        toggle.textContent = "收起詳細紀錄 ▲";
+
+    } else {
+
+        details.style.display = "none";
+        toggle.textContent = "查看詳細紀錄 ▼";
+
+    }
+
+});
 
     historyList.appendChild(card);
 });
