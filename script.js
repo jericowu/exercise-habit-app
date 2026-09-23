@@ -334,7 +334,7 @@ console.log(
 
 const exerciseList = document.querySelector("#exercise-list");
 
-const todayExercises = exercisePlan[currentCycleDay];
+let todayExercises = exercisePlan[currentCycleDay];
 
 console.log("exerciseList：", exerciseList);
 console.log("currentPlanDay：", currentPlanDay);
@@ -897,6 +897,9 @@ savePlanButton.addEventListener("click", function () {
         "customExercisePlan",
         JSON.stringify(customPlan)
     );
+    exercisePlan = customPlan;
+
+    todayExercises = exercisePlan[currentCycleDay];
 
     alert("運動目標已儲存！");
 
