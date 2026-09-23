@@ -81,6 +81,13 @@ const statisticsBackButton = document.querySelector("#statistics-back-button");
 const weeklyRate = document.querySelector("#weekly-rate");
 const exerciseTotals = document.querySelector("#exercise-totals");
 
+const settingsPage = document.querySelector("#settings-page");
+const settingsButton = document.querySelector("#settings-button");
+const settingsBackButton = document.querySelector("#settings-back-button");
+
+const settingsNickname = document.querySelector("#settings-nickname");
+const saveNicknameButton = document.querySelector("#save-nickname-button");
+
 if (savedNickname && planStarted === "true") {
 
     welcomePage.style.display = "none";
@@ -750,3 +757,39 @@ function renderExerciseTotals() {
 
     });
 }
+
+settingsButton.addEventListener("click", function () {
+
+    todayPage.style.display = "none";
+    settingsPage.style.display = "block";
+
+    settingsNickname.value =
+        localStorage.getItem("nickname") || "";
+
+});
+
+settingsBackButton.addEventListener("click", function () {
+
+    settingsPage.style.display = "none";
+    todayPage.style.display = "block";
+
+});
+
+saveNicknameButton.addEventListener("click", function () {
+
+    const newNickname =
+        settingsNickname.value.trim();
+
+    if (newNickname === "") {
+        alert("暱稱不能是空白！");
+        return;
+    }
+
+    localStorage.setItem(
+        "nickname",
+        newNickname
+    );
+
+    alert("暱稱已更新！");
+
+});
