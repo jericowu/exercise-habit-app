@@ -78,6 +78,7 @@ const historyList = document.querySelector("#history-list");
 const statisticsPage = document.querySelector("#statistics-page");
 const statisticsButton = document.querySelector("#statistics-button");
 const statisticsBackButton = document.querySelector("#statistics-back-button");
+const weeklyRate = document.querySelector("#weekly-rate");
 
 if (savedNickname && planStarted === "true") {
 
@@ -571,6 +572,16 @@ statisticsButton.addEventListener("click", function () {
     todayPage.style.display = "none";
     statisticsPage.style.display = "block";
 
+    const result = calculateWeeklyRate();
+
+    weeklyRate.textContent =
+        result.completedDays +
+        " / " +
+        result.totalDays +
+        " 天（" +
+        result.percentage +
+        "%）";
+
 });
 
 statisticsBackButton.addEventListener("click", function () {
@@ -579,3 +590,89 @@ statisticsBackButton.addEventListener("click", function () {
     todayPage.style.display = "block";
 
 });
+
+function calculateWeeklyRate() {
+
+    const planStartDate = localStorage.getItem("planStartDate");
+
+    if (!planStartDate) {
+        return {
+            completedDays: 0,
+            totalDays: 0,
+            percentage: 0
+        };
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const startDate = new Date(planStartDate + "T00:00:00");
+
+    const monday = new Date(today);
+
+    const dayOfWeek = today.getDay();
+
+    const daysSinceMonday =
+        dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+
+    monday.setDate(
+        today.getDate() - daysSinceMonday
+    );
+
+    let countStartDate = monday;
+
+    if (startDate > monday) {
+        countStartDate = startDate;
+    }
+
+    let completedDays = 0;
+    let totalDays = 0;
+
+    const date = new Date(countStartDate);
+
+    while (date <= today) {
+
+        totalDays++;
+
+        const year = date.getFullYear();
+        const month = String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+        const day = String(
+            date.getDate()
+        ).padStart(2, "0");
+
+        const dateString =
+            `${year}-${month}-${day}`;
+
+        const record = localStorage.getItem(
+            "exercise-" + dateString
+        );
+
+        if (record) {
+
+            const exerciseRecord =
+                JSON.parse(record);
+
+            if (exerciseRecord.completed) {
+                completedDays++;
+            }
+        }
+
+        date.setDate(date.getDate() + 1);
+    }
+
+    const percentage =
+        totalDays === 0
+            ? 0
+            : Math.round(
+                (completedDays / totalDays) * 100
+            );
+
+    return {
+        completedDays: completedDays,
+        totalDays: totalDays,
+        percentage: percentage
+    };
+}
