@@ -71,6 +71,9 @@ planButton.addEventListener("click", function () {
 });
 
 const completeButton = document.querySelector("#complete-button");
+const historyPage = document.querySelector("#history-page");
+const historyButton = document.querySelector("#history-button");
+const backToTodayButton = document.querySelector("#back-to-today-button");
 
 if (savedNickname && planStarted === "true") {
 
@@ -460,5 +463,19 @@ completeButton.addEventListener("click", function () {
     "歷史最高連續 " + getHighestStreak() + " 天";
 
     alert("🎉 今天的運動完成了！");
+
+    historyButton.addEventListener("click", function () {
+
+    todayPage.style.display = "none";
+    historyPage.style.display = "block";
+
+});
+
+backToTodayButton.addEventListener("click", function () {
+
+    historyPage.style.display = "none";
+    todayPage.style.display = "block";
+
+});
 
 });
