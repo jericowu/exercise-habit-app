@@ -74,6 +74,7 @@ const completeButton = document.querySelector("#complete-button");
 const historyPage = document.querySelector("#history-page");
 const historyButton = document.querySelector("#history-button");
 const backToTodayButton = document.querySelector("#back-to-today-button");
+const historyList = document.querySelector("#history-list");
 
 if (savedNickname && planStarted === "true") {
 
