@@ -75,6 +75,9 @@ const historyPage = document.querySelector("#history-page");
 const historyButton = document.querySelector("#history-button");
 const backToTodayButton = document.querySelector("#back-to-today-button");
 const historyList = document.querySelector("#history-list");
+const statisticsPage = document.querySelector("#statistics-page");
+const statisticsButton = document.querySelector("#statistics-button");
+const statisticsBackButton = document.querySelector("#statistics-back-button");
 
 if (savedNickname && planStarted === "true") {
 
@@ -562,3 +565,17 @@ function renderHistory() {
     historyList.appendChild(card);
 });
 }
+
+statisticsButton.addEventListener("click", function () {
+
+    todayPage.style.display = "none";
+    statisticsPage.style.display = "block";
+
+});
+
+statisticsBackButton.addEventListener("click", function () {
+
+    statisticsPage.style.display = "none";
+    todayPage.style.display = "block";
+
+});
