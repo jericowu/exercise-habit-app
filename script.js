@@ -84,6 +84,8 @@ const saveNicknameButton = document.querySelector("#save-nickname-button");
 
 const settingsPlanList =
     document.querySelector("#settings-plan-list");
+const savePlanButton =
+    document.querySelector("#save-plan-button");
 
 const bottomNav = document.querySelector("#bottom-nav");
 
@@ -841,3 +843,51 @@ function renderSettingsPlan() {
     }
 
 }
+
+savePlanButton.addEventListener("click", function () {
+
+    const customPlan = {};
+    let isValid = true;
+
+    for (let day = 1; day <= 7; day++) {
+
+        customPlan[day] = [];
+
+        exercisePlan[day].forEach(function (exercise, index) {
+
+            const input = document.querySelector(
+                "#settings-day-" +
+                day +
+                "-exercise-" +
+                index
+            );
+
+            const newTarget = Number(input.value);
+
+            if (input.value === "" || newTarget <= 0) {
+                isValid = false;
+            }
+
+            customPlan[day].push({
+                name: exercise.name,
+                target: newTarget,
+                unit: exercise.unit
+            });
+
+        });
+
+    }
+
+    if (!isValid) {
+        alert("所有運動目標都必須大於 0！");
+        return;
+    }
+
+    localStorage.setItem(
+        "customExercisePlan",
+        JSON.stringify(customPlan)
+    );
+
+    alert("運動目標已儲存！");
+
+});
