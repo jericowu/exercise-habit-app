@@ -780,6 +780,10 @@ function showMainPage(page, activeButton) {
 
 navToday.addEventListener("click", function () {
 
+    todayExercises = exercisePlan[currentCycleDay];
+
+    renderTodayExercises();
+
     showMainPage(todayPage, navToday);
 
 });
