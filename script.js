@@ -874,18 +874,27 @@ function renderSettingsPlan() {
             const item = document.createElement("p");
 
             item.innerHTML = `
-                <label for="settings-day-${day}-exercise-${index}">
-                    ${exercise.name}
-                </label>
+                <input
+                    type="text"
+                    id="settings-day-${day}-exercise-${index}-name"
+                    value="${exercise.name}"
+                    placeholder="運動名稱"
+                >
 
                 <input
                     type="number"
-                    id="settings-day-${day}-exercise-${index}"
+                    id="settings-day-${day}-exercise-${index}-target"
                     value="${exercise.target}"
                     min="1"
+                    placeholder="目標"
                 >
 
-                ${exercise.unit}
+                <input
+                    type="text"
+                    id="settings-day-${day}-exercise-${index}-unit"
+                    value="${exercise.unit}"
+                    placeholder="單位"
+                >
             `;
 
             settingsPlanList.appendChild(item);
