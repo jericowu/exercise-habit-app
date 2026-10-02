@@ -33,6 +33,8 @@ function updateTodayGreeting() {
 
 }
 
+updateTodayGreeting();
+
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
 
