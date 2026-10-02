@@ -648,12 +648,18 @@ function renderHistory() {
 
 }
 
-    const details = card.querySelector(".history-details");
-    const toggle = card.querySelector(".history-toggle");
+    if (record.completed) {
+
+    const details =
+        card.querySelector(".history-details");
+
+    const toggle =
+        card.querySelector(".history-toggle");
 
     record.exercises.forEach(function (exercise) {
 
-        const exerciseDetail = document.createElement("div");
+        const exerciseDetail =
+            document.createElement("div");
 
         exerciseDetail.innerHTML = `
             <hr>
@@ -663,23 +669,28 @@ function renderHistory() {
         `;
 
         details.appendChild(exerciseDetail);
+
     });
 
     card.addEventListener("click", function () {
 
-    if (details.style.display === "none") {
+        if (details.style.display === "none") {
 
-        details.style.display = "block";
-        toggle.textContent = "收起詳細紀錄 ▲";
+            details.style.display = "block";
+            toggle.textContent =
+                "收起詳細紀錄 ▲";
 
-    } else {
+        } else {
 
-        details.style.display = "none";
-        toggle.textContent = "查看詳細紀錄 ▼";
+            details.style.display = "none";
+            toggle.textContent =
+                "查看詳細紀錄 ▼";
 
-    }
+        }
 
-});
+    });
+
+}
 
     historyList.appendChild(card);
 });
