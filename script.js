@@ -873,31 +873,55 @@ function renderSettingsPlan() {
 
         exercisePlan[day].forEach(function (exercise, index) {
 
-            const item = document.createElement("p");
+            const item = document.createElement("div");
+                item.className = "settings-exercise";
 
-            item.innerHTML = `
-                <input
-                    type="text"
-                    id="settings-day-${day}-exercise-${index}-name"
-                    value="${exercise.name}"
-                    placeholder="運動名稱"
-                >
+                item.innerHTML = `
+                    <div class="settings-field">
+                    <label for="settings-day-${day}-exercise-${index}-name">
+                       運動名稱
+                    </label>
 
-                <input
-                    type="number"
-                    id="settings-day-${day}-exercise-${index}-target"
-                    value="${exercise.target}"
-                    min="1"
-                    placeholder="目標"
-                >
+                    <input
+                        type="text"
+                        id="settings-day-${day}-exercise-${index}-name"
+                        value="${exercise.name}"
+                        placeholder="運動名稱"
+                    >
+                    </div>
 
-                <input
-                    type="text"
-                    id="settings-day-${day}-exercise-${index}-unit"
-                    value="${exercise.unit}"
-                    placeholder="單位"
-                >
+                    <div class="settings-target-row">
 
+                    <div class="settings-field">
+                    <label for="settings-day-${day}-exercise-${index}-target">
+                        目標
+                    </label>
+
+                    <input
+                        type="number"
+                        id="settings-day-${day}-exercise-${index}-target"
+                        value="${exercise.target}"
+                        min="1"
+                        placeholder="目標"
+                    >
+                    </div>
+
+                    <div class="settings-field">
+                    <label for="settings-day-${day}-exercise-${index}-unit">
+                        單位
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settings-day-${day}-exercise-${index}-unit"
+                        value="${exercise.unit}"
+                        placeholder="單位"
+                    >
+                </div>
+
+            </div>
+
+                <div class="settings-exercise-actions">
                 <button
                     type="button"
                     class="delete-exercise-button"
@@ -906,7 +930,8 @@ function renderSettingsPlan() {
                 >
                     刪除
                 </button>
-            `;
+            </div>
+        `;
 
             const deleteButton =
                 item.querySelector(".delete-exercise-button");
