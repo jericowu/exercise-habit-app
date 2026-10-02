@@ -625,16 +625,28 @@ function renderHistory() {
     const card = document.createElement("div");
     card.className = "card";
 
+    if (record.completed) {
+
     card.innerHTML = `
-         <h2>${record.date}</h2>
-         <p>Day ${record.planDay}</p>
-         <p>✓ 已完成</p>
-         <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
+        <h2>${record.date}</h2>
+        <p>Day ${record.planDay}</p>
+        <p>✓ 已完成</p>
+        <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
 
-         <p class="history-toggle">查看詳細紀錄 ▼</p>
+        <p class="history-toggle">查看詳細紀錄 ▼</p>
 
-         <div class="history-details" style="display: none;"></div>
+        <div class="history-details" style="display: none;"></div>
     `;
+
+    } else {
+
+    card.innerHTML = `
+        <h2>${record.date}</h2>
+        <p>Day ${record.planDay}</p>
+        <p>✗ 未完成</p>
+    `;
+
+}
 
     const details = card.querySelector(".history-details");
     const toggle = card.querySelector(".history-toggle");
