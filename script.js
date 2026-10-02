@@ -422,43 +422,48 @@ function renderTodayExercises() {
 
     });
 
+        if (latestSavedTodayRecord) {
+
+        const todayRecord =
+            JSON.parse(latestSavedTodayRecord);
+
+        if (
+            todayRecord.completed &&
+            todayRecord.exercises &&
+            todayRecord.planDay === currentPlanDay
+        ) {
+
+            todayRecord.exercises.forEach(function (record, index) {
+
+                const input = document.querySelector(
+                    "#exercise-" + index
+                );
+
+                const status = document.querySelector(
+                    "#exercise-status-" + index
+                );
+
+                input.value = record.actual;
+
+                if (record.actual >= record.target) {
+
+                    status.textContent = "✓ 已完成";
+
+                } else {
+
+                    status.textContent = "尚未完成";
+
+                }
+
+            });
+
+        }
+
+    }
+
 }
 
 renderTodayExercises();
-
-if (savedTodayRecord) {
-
-    const todayRecord = JSON.parse(savedTodayRecord);
-
-    if (
-        todayRecord.exercises &&
-        todayRecord.planDay === currentPlanDay
-    ) {
-
-        todayRecord.exercises.forEach(function (record, index) {
-
-            const input = document.querySelector(
-                "#exercise-" + index
-            );
-
-            const status = document.querySelector(
-                "#exercise-status-" + index
-            );
-
-            input.value = record.actual;
-
-            if (record.actual >= record.target) {
-
-                status.textContent = "✓ 已完成";
-
-            } else {
-
-                status.textContent = "尚未完成";
-
-            }
-        });
-    }
-}
 
 completeButton.addEventListener("click", function () {
 
