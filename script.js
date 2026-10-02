@@ -67,7 +67,7 @@ planButton.addEventListener("click", function () {
 
     planPage.style.display = "none";
     todayPage.style.display = "block";
-    bottomNav.style.display = "block";
+    bottomNav.style.display = "flex";
     navToday.classList.add("active");
 
 });
@@ -101,7 +101,7 @@ if (savedNickname && planStarted === "true") {
     planPage.style.display = "none";
     todayPage.style.display = "block";
 
-    bottomNav.style.display = "block";
+    bottomNav.style.display = "flex";
     navToday.classList.add("active");
 
 }
