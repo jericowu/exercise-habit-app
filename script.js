@@ -17,6 +17,21 @@ const todayPage = document.querySelector("#today-page");
 const streakDisplay = document.querySelector("#streak-display");
 const highestStreakDisplay = document.querySelector("#highest-streak-display");
 const planDayDisplay = document.querySelector("#plan-day-display");
+const todayGreeting = document.querySelector("#today-greeting");
+
+function updateTodayGreeting() {
+
+    const nickname = localStorage.getItem("nickname");
+
+    if (nickname) {
+        todayGreeting.textContent =
+            nickname + "，今天也動一下吧！";
+    } else {
+        todayGreeting.textContent =
+            "今天也動一下吧！";
+    }
+
+}
 
 const savedNickname = localStorage.getItem("nickname");
 const planStarted = localStorage.getItem("planStarted");
@@ -786,7 +801,7 @@ saveNicknameButton.addEventListener("click", function () {
         "nickname",
         newNickname
     );
-
+    updateTodayGreeting();
     alert("暱稱已更新！");
 
 });
