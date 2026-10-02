@@ -555,24 +555,65 @@ function renderHistory() {
 
     const records = [];
 
-    for (let i = 0; i < localStorage.length; i++) {
+    const planStartDate =
+        localStorage.getItem("planStartDate");
 
-        const key = localStorage.key(i);
+    if (!planStartDate) {
+        historyList.textContent = "目前還沒有歷史紀錄";
+        return;
+    }
 
-        if (key.startsWith("exercise-")) {
+    const startDate =
+        new Date(planStartDate + "T00:00:00");
 
-            const record = JSON.parse(
-                localStorage.getItem(key)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const date = new Date(startDate);
+
+    let planDay = 1;
+
+    while (date <= today) {
+
+        const year = date.getFullYear();
+
+        const month = String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+        const day = String(
+            date.getDate()
+        ).padStart(2, "0");
+
+        const dateString =
+            `${year}-${month}-${day}`;
+
+        const savedRecord =
+            localStorage.getItem(
+                "exercise-" + dateString
             );
 
-            if (
-                record.date &&
-                record.planDay &&
-                record.exercises
-            ) {
-                records.push(record);
-            }
+        if (savedRecord) {
+
+            records.push(
+                JSON.parse(savedRecord)
+            );
+
+        } else {
+
+            records.push({
+                date: dateString,
+                planDay: planDay,
+                completed: false,
+                exercises: []
+            });
+
         }
+
+        date.setDate(date.getDate() + 1);
+
+        planDay++;
+
     }
 
     records.sort(function (a, b) {
