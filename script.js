@@ -340,8 +340,7 @@ console.log("exerciseList：", exerciseList);
 console.log("currentPlanDay：", currentPlanDay);
 console.log("todayExercises：", todayExercises);
 
-
-    function renderTodayExercises() {
+function renderTodayExercises() {
 
     exerciseList.innerHTML = "";
 
