@@ -335,6 +335,7 @@ console.log(
 const exerciseList = document.querySelector("#exercise-list");
 
 let todayExercises = exercisePlan[currentCycleDay];
+let settingsDraftPlan = null;
 
 console.log("exerciseList：", exerciseList);
 console.log("currentPlanDay：", currentPlanDay);
@@ -852,6 +853,10 @@ navSettings.addEventListener("click", function () {
 
     settingsNickname.value =
         localStorage.getItem("nickname") || "";
+
+    settingsDraftPlan =
+        JSON.parse(JSON.stringify(exercisePlan));
+
     renderSettingsPlan();
 
 });
@@ -871,7 +876,7 @@ function renderSettingsPlan() {
 
         daySection.appendChild(dayTitle);
 
-        exercisePlan[day].forEach(function (exercise, index) {
+        settingsDraftPlan[day].forEach(function (exercise, index) {
 
             const item = document.createElement("div");
                 item.className = "settings-exercise";
@@ -938,14 +943,14 @@ function renderSettingsPlan() {
 
             deleteButton.addEventListener("click", function () {
 
-                if (exercisePlan[day].length <= 1) {
+                if (settingsDraftPlan[day].length <= 1) {
 
                     alert("每一天至少需要保留一個運動！");
                     return;
 
                 }
 
-                exercisePlan[day].splice(index, 1);
+                settingsDraftPlan[day].splice(index, 1);
 
                 renderSettingsPlan();
 
@@ -955,16 +960,16 @@ function renderSettingsPlan() {
 
             });
 
-        const addExerciseButton =
+            const addExerciseButton =
             document.createElement("button");
 
-        addExerciseButton.textContent = "＋ 新增運動";
-        addExerciseButton.className = "add-exercise-button";
-        addExerciseButton.dataset.day = day;
+            addExerciseButton.textContent = "＋ 新增運動";
+            addExerciseButton.className = "add-exercise-button";
+            addExerciseButton.dataset.day = day;
 
-        addExerciseButton.addEventListener("click", function () {
+            addExerciseButton.addEventListener("click", function () {
 
-            exercisePlan[day].push({
+            settingsDraftPlan[day].push({
                 name: "新運動",
                 target: 10,
                 unit: "次"
