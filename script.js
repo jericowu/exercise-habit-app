@@ -862,12 +862,14 @@ function renderSettingsPlan() {
 
     for (let day = 1; day <= 7; day++) {
 
+        const daySection = document.createElement("div");
+        daySection.className = "settings-day";
+
         const dayTitle = document.createElement("h3");
 
         dayTitle.textContent = "Day " + day;
 
-        settingsPlanList.appendChild(dayTitle);
-
+        daySection.appendChild(dayTitle);
 
         exercisePlan[day].forEach(function (exercise, index) {
 
@@ -924,7 +926,7 @@ function renderSettingsPlan() {
 
             });
 
-            settingsPlanList.appendChild(item);
+            daySection.appendChild(item);
 
             });
 
@@ -947,7 +949,9 @@ function renderSettingsPlan() {
 
         });
 
-        settingsPlanList.appendChild(addExerciseButton);
+        daySection.appendChild(addExerciseButton);
+
+        settingsPlanList.appendChild(daySection);
 
     }
 
