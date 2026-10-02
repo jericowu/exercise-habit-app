@@ -906,6 +906,17 @@ function renderSettingsPlan() {
                 </button>
             `;
 
+            const deleteButton =
+                item.querySelector(".delete-exercise-button");
+
+            deleteButton.addEventListener("click", function () {
+
+                exercisePlan[day].splice(index, 1);
+
+                renderSettingsPlan();
+
+            });
+
             settingsPlanList.appendChild(item);
 
         });
