@@ -937,23 +937,47 @@ savePlanButton.addEventListener("click", function () {
 
         exercisePlan[day].forEach(function (exercise, index) {
 
-            const input = document.querySelector(
+            const nameInput = document.querySelector(
                 "#settings-day-" +
                 day +
                 "-exercise-" +
-                index
+                index +
+                "-name"
             );
 
-            const newTarget = Number(input.value);
+            const targetInput = document.querySelector(
+                "#settings-day-" +
+                day +
+                "-exercise-" +
+                index +
+                "-target"
+            );
 
-            if (input.value === "" || newTarget <= 0) {
+            const unitInput = document.querySelector(
+                "#settings-day-" +
+                day +
+                "-exercise-" +
+                index +
+                "-unit"
+            );
+
+            const newName = nameInput.value.trim();
+            const newTarget = Number(targetInput.value);
+            const newUnit = unitInput.value.trim();
+
+            if (
+                newName === "" ||
+                targetInput.value === "" ||
+                newTarget <= 0 ||
+                newUnit === ""
+            ) {
                 isValid = false;
             }
 
             customPlan[day].push({
-                name: exercise.name,
+                name: newName,
                 target: newTarget,
-                unit: exercise.unit
+                unit: newUnit
             });
 
         });
@@ -961,7 +985,7 @@ savePlanButton.addEventListener("click", function () {
     }
 
     if (!isValid) {
-        alert("所有運動目標都必須大於 0！");
+        alert("運動名稱、目標和單位都必須填寫，目標必須大於 0！");
         return;
     }
 
@@ -969,10 +993,13 @@ savePlanButton.addEventListener("click", function () {
         "customExercisePlan",
         JSON.stringify(customPlan)
     );
+
     exercisePlan = customPlan;
 
     todayExercises = exercisePlan[currentCycleDay];
 
-    alert("運動目標已儲存！");
+    renderSettingsPlan();
+
+    alert("運動計畫已儲存！");
 
 });
