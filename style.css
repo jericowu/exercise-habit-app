@@ -242,3 +242,24 @@ body {
 #save-plan-button {
     margin-top: 8px;
 }
+
+.history-status {
+    display: inline-block;
+    margin: 4px 0 12px;
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.history-status.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.history-status.incomplete {
+    background: #f1f1f1;
+    color: #666;
+}
