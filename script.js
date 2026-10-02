@@ -630,7 +630,7 @@ function renderHistory() {
     card.innerHTML = `
         <h2>${record.date}</h2>
         <p>Day ${record.planDay}</p>
-        <p>✓ 已完成</p>
+        <p class="history-status completed">✓ 已完成</p>
         <p>${record.exercises.length} / ${record.exercises.length} 個項目完成</p>
 
         <p class="history-toggle">查看詳細紀錄 ▼</p>
@@ -643,7 +643,7 @@ function renderHistory() {
     card.innerHTML = `
         <h2>${record.date}</h2>
         <p>Day ${record.planDay}</p>
-        <p>✗ 未完成</p>
+        <p class="history-status incomplete">✗ 未完成</p>
     `;
 
 }
