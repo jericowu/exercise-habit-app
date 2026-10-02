@@ -342,56 +342,67 @@ console.log("todayExercises：", todayExercises);
 
 todayExercises.forEach(function (exercise, index) {
 
-    const card = document.createElement("div");
+    function renderTodayExercises() {
 
-    card.className = "card";
+    exerciseList.innerHTML = "";
 
-    card.innerHTML = `
-        <h2>${exercise.name}</h2>
-        <p>目標：${exercise.target} ${exercise.unit}</p>
-        <label for="exercise-${index}">
-            實際完成
-        </label>
+    todayExercises.forEach(function (exercise, index) {
 
-        <input
-            type="number"
-            id="exercise-${index}"
-            min="0"
-            placeholder="輸入數值"
-        >
+        const card = document.createElement("div");
 
-        <p id="exercise-status-${index}">
-            尚未完成
-        </p>
-    `;
+        card.className = "card";
 
-    exerciseList.appendChild(card);
+        card.innerHTML = `
+            <h2>${exercise.name}</h2>
+            <p>目標：${exercise.target} ${exercise.unit}</p>
 
-    const input = document.querySelector(
-        "#exercise-" + index
-    );
+            <label for="exercise-${index}">
+                實際完成
+            </label>
 
-    const status = document.querySelector(
-        "#exercise-status-" + index
-    );
+            <input
+                type="number"
+                id="exercise-${index}"
+                min="0"
+                placeholder="輸入數值"
+            >
 
-    input.addEventListener("input", function () {
+            <p id="exercise-status-${index}">
+                尚未完成
+            </p>
+        `;
 
-        const actual = Number(input.value);
+        exerciseList.appendChild(card);
 
-        if (actual >= exercise.target) {
+        const input = document.querySelector(
+            "#exercise-" + index
+        );
 
-            status.textContent = "✓ 已完成";
+        const status = document.querySelector(
+            "#exercise-status-" + index
+        );
 
-        } else {
+        input.addEventListener("input", function () {
 
-            status.textContent = "尚未完成";
+            const actual = Number(input.value);
 
-        }
+            if (actual >= exercise.target) {
+
+                status.textContent = "✓ 已完成";
+
+            } else {
+
+                status.textContent = "尚未完成";
+
+            }
+
+        });
 
     });
 
-});
+}
+
+renderTodayExercises();
 
 if (savedTodayRecord) {
 
