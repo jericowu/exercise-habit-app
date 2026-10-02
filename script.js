@@ -911,6 +911,13 @@ function renderSettingsPlan() {
 
             deleteButton.addEventListener("click", function () {
 
+                if (exercisePlan[day].length <= 1) {
+
+                    alert("每一天至少需要保留一個運動！");
+                    return;
+
+                }
+
                 exercisePlan[day].splice(index, 1);
 
                 renderSettingsPlan();
@@ -919,7 +926,7 @@ function renderSettingsPlan() {
 
             settingsPlanList.appendChild(item);
 
-        });
+            });
 
         const addExerciseButton =
             document.createElement("button");
