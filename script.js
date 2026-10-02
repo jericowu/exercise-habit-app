@@ -344,6 +344,30 @@ function renderTodayExercises() {
 
     exerciseList.innerHTML = "";
 
+    const latestSavedTodayRecord =
+        localStorage.getItem("exercise-" + getLocalDate());
+
+    if (latestSavedTodayRecord) {
+
+        const todayRecord =
+            JSON.parse(latestSavedTodayRecord);
+
+        if (
+            todayRecord.completed &&
+            todayRecord.exercises &&
+            todayRecord.planDay === currentPlanDay
+        ) {
+            todayExercises = todayRecord.exercises;
+        } else {
+            todayExercises = exercisePlan[currentCycleDay];
+        }
+
+    } else {
+
+        todayExercises = exercisePlan[currentCycleDay];
+
+    }
+
     todayExercises.forEach(function (exercise, index) {
 
         const card = document.createElement("div");
