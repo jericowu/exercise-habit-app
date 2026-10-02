@@ -899,6 +899,18 @@ function renderSettingsPlan() {
         addExerciseButton.className = "add-exercise-button";
         addExerciseButton.dataset.day = day;
 
+        addExerciseButton.addEventListener("click", function () {
+
+            exercisePlan[day].push({
+                name: "新運動",
+                target: 10,
+                unit: "次"
+            });
+
+            renderSettingsPlan();
+
+        });
+
         settingsPlanList.appendChild(addExerciseButton);
 
     }
