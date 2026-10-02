@@ -216,3 +216,29 @@ body {
 .delete-exercise-button:hover {
     background: #f5f5f5;
 }
+
+/* 新增運動按鈕 */
+.add-exercise-button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 12px;
+
+    border: 1px dashed #bbb;
+    border-radius: 8px;
+
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 15px;
+    color: #555;
+
+    cursor: pointer;
+}
+
+.add-exercise-button:hover {
+    background: #f5f5f5;
+}
+
+#save-plan-button {
+    margin-top: 8px;
+}
