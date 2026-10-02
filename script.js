@@ -892,6 +892,15 @@ function renderSettingsPlan() {
 
         });
 
+        const addExerciseButton =
+            document.createElement("button");
+
+        addExerciseButton.textContent = "＋ 新增運動";
+        addExerciseButton.className = "add-exercise-button";
+        addExerciseButton.dataset.day = day;
+
+        settingsPlanList.appendChild(addExerciseButton);
+
     }
 
 }
