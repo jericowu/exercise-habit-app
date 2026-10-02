@@ -152,3 +152,67 @@ body {
     margin-bottom: 16px;
     font-size: 18px;
 }
+
+/* 設定頁：單一運動 */
+.settings-exercise {
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* 第一個運動不要有太大的上方空間 */
+.settings-day h3 + .settings-exercise {
+    padding-top: 0;
+}
+
+/* 輸入欄位 */
+.settings-field {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.settings-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #666;
+}
+
+.settings-field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+/* 目標與單位並排 */
+.settings-target-row {
+    display: flex;
+    gap: 12px;
+}
+
+.settings-target-row .settings-field {
+    flex: 1;
+}
+
+/* 刪除按鈕 */
+.settings-exercise-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-exercise-button {
+    padding: 7px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-exercise-button:hover {
+    background: #f5f5f5;
+}
