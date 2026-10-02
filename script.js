@@ -340,7 +340,6 @@ console.log("exerciseList：", exerciseList);
 console.log("currentPlanDay：", currentPlanDay);
 console.log("todayExercises：", todayExercises);
 
-todayExercises.forEach(function (exercise, index) {
 
     function renderTodayExercises() {
 
