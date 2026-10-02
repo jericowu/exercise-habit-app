@@ -996,7 +996,7 @@ savePlanButton.addEventListener("click", function () {
 
         customPlan[day] = [];
 
-        exercisePlan[day].forEach(function (exercise, index) {
+        settingsDraftPlan[day].forEach(function (exercise, index) {
 
             const nameInput = document.querySelector(
                 "#settings-day-" +
