@@ -938,6 +938,39 @@ function renderSettingsPlan() {
             </div>
         `;
 
+            const nameInput = item.querySelector(
+                "#settings-day-" + day +
+                "-exercise-" + index +
+                "-name"
+            );
+
+            const targetInput = item.querySelector(
+                "#settings-day-" + day +
+                "-exercise-" + index +
+                "-target"
+            );
+
+            const unitInput = item.querySelector(
+                "#settings-day-" + day +
+                "-exercise-" + index +
+                "-unit"
+            );
+
+            nameInput.addEventListener("input", function () {
+                settingsDraftPlan[day][index].name =
+                nameInput.value;
+            });
+
+            targetInput.addEventListener("input", function () {
+                settingsDraftPlan[day][index].target =
+                Number(targetInput.value);
+            });
+
+            unitInput.addEventListener("input", function () {
+                settingsDraftPlan[day][index].unit =
+                    unitInput.value;
+            });
+            
             const deleteButton =
                 item.querySelector(".delete-exercise-button");
 
@@ -989,75 +1022,49 @@ function renderSettingsPlan() {
 
 savePlanButton.addEventListener("click", function () {
 
-    const customPlan = {};
     let isValid = true;
 
     for (let day = 1; day <= 7; day++) {
 
-        customPlan[day] = [];
+        settingsDraftPlan[day].forEach(function (exercise) {
 
-        settingsDraftPlan[day].forEach(function (exercise, index) {
-
-            const nameInput = document.querySelector(
-                "#settings-day-" +
-                day +
-                "-exercise-" +
-                index +
-                "-name"
-            );
-
-            const targetInput = document.querySelector(
-                "#settings-day-" +
-                day +
-                "-exercise-" +
-                index +
-                "-target"
-            );
-
-            const unitInput = document.querySelector(
-                "#settings-day-" +
-                day +
-                "-exercise-" +
-                index +
-                "-unit"
-            );
-
-            const newName = nameInput.value.trim();
-            const newTarget = Number(targetInput.value);
-            const newUnit = unitInput.value.trim();
+            const name = exercise.name.trim();
+            const target = Number(exercise.target);
+            const unit = exercise.unit.trim();
 
             if (
-                newName === "" ||
-                targetInput.value === "" ||
-                newTarget <= 0 ||
-                newUnit === ""
+                name === "" ||
+                !Number.isFinite(target) ||
+                target <= 0 ||
+                unit === ""
             ) {
                 isValid = false;
             }
-
-            customPlan[day].push({
-                name: newName,
-                target: newTarget,
-                unit: newUnit
-            });
 
         });
 
     }
 
     if (!isValid) {
-        alert("運動名稱、目標和單位都必須填寫，目標必須大於 0！");
+        alert(
+            "運動名稱、目標和單位都必須填寫，目標必須大於 0！"
+        );
         return;
     }
 
+    exercisePlan =
+        JSON.parse(JSON.stringify(settingsDraftPlan));
+
     localStorage.setItem(
         "customExercisePlan",
-        JSON.stringify(customPlan)
+        JSON.stringify(exercisePlan)
     );
 
-    exercisePlan = customPlan;
+    todayExercises =
+        exercisePlan[currentCycleDay];
 
-    todayExercises = exercisePlan[currentCycleDay];
+    settingsDraftPlan =
+        JSON.parse(JSON.stringify(exercisePlan));
 
     renderSettingsPlan();
 
