@@ -422,7 +422,7 @@ function renderTodayExercises() {
 
     });
 
-        if (latestSavedTodayRecord) {
+    if (latestSavedTodayRecord) {
 
         const todayRecord =
             JSON.parse(latestSavedTodayRecord);
