@@ -895,6 +895,15 @@ function renderSettingsPlan() {
                     value="${exercise.unit}"
                     placeholder="單位"
                 >
+
+                <button
+                    type="button"
+                    class="delete-exercise-button"
+                    data-day="${day}"
+                    data-index="${index}"
+                >
+                    刪除
+                </button>
             `;
 
             settingsPlanList.appendChild(item);
